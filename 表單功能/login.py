@@ -1,7 +1,7 @@
 # login.py
 from flask import Flask, request, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 
 def authenticate(username, password):
@@ -17,6 +17,11 @@ def authenticate(username, password):
 
 
 @app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template('home.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -30,27 +35,42 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/other_page1')
+@app.route('/other_chose')  # 首頁
+def other_chose():
+    return render_template('chose.html')
+
+
+@app.route('/other_logint')  # chose
+def other_logint():
+    return render_template('logint.html')
+
+
+@app.route('/other_logins')  # chose
+def other_logins():
+    return render_template('logins.html')
+
+
+@app.route('/other_page1')  # welcome
 def other_page1():
     return render_template('p1.html')
 
 
-@app.route('/other_page2')
+@app.route('/other_page2')  # p1
 def other_page2():
     return render_template('p2.html')
 
 
-@app.route('/other_page3')
+@app.route('/other_page3')  # welcome
 def other_page3():
     return render_template('p3.html')
 
 
-@app.route('/other_page4')
+@app.route('/other_page4')  # p1
 def other_page4():
     return render_template('p4.html')
 
 
-@app.route('/other_welcome')
+@app.route('/other_welcome')  # p4
 def other_welcome():
     return render_template('welcome.html')
 

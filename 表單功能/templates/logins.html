@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="system_name">
+        <h2>英文學習系統</h2>
+      </div>
+     
+      <div class="login_page">
+        <div id="student_login">
+  
+  
+          <div class="login">  
+           
+            <h3>學生版登入</h3>
+  
+  
+            <form method="POST" action="/login">
+              <input type="text" id="username" name="username" placeholder="帳號" required title="請輸入英文數字組合">
+              <input type="text" id="password" name="password" placeholder="密碼" required title="請輸入英文數字組合">
+              <input type="submit" value="登入" class="submit" >
+            </form>  
+  
+  
+            <h5 onclick="show_hide()">註冊帳號</h5>
+           
+          </div><!-- login end-->
+        </div><!-- container1 end-->
+      </div><!-- login_page end-->
+     
+      <div class="signup_page">
+        <div id="student_signup">
+  
+  
+          <div class="signup">  
+           
+            <h3>學生版註冊</h3>
+  
+  
+            <form method="POST" action="/">
+              <label for="fullname">使用者全名</label>
+              <input type="text" id="username" name="username" required>
+              <br>
+              <label for="username">帳號</label>
+              <input type="text" id="username" name="username" required title="請輸入英文數字組合">
+              <br>
+              <label for="password">密碼</label>
+              <input type="text" id="username" name="username" required title="請輸入英文數字組合">
+              <br>
+              <label for="comfirm_password">密碼確認</label>
+              <input type="text" id="username" name="username" required title="請輸入英文數字組合">
+              <br>
+              <label for="mail">電子郵件</label>
+              <input type="text" id="username" name="username" required>
+              <br>
+              <input type="submit" value="註冊">
+          </form>
+  
+  
+            <h5 onclick="show_hide()">登入帳號</h5>
+           
+          </div><!-- signup end-->
+        </div><!-- container2 end-->
+      </div><!-- signup_page end-->
+</body>
+<script>
+    function show_hide() {
+    var login = document.getElementById("student_login");
+    var signup = document.getElementById("student_signup");
+ 
+    if (login.style.display === "none") {
+        login.style.display = "block";  //lonin出現
+        document.getElementById("username").value="";
+        document.getElementById("password").value="";
+        signup.style.display = "none";  //signup消失
+    } else {
+        login.style.display = "none";   //login消失
+        signup.style.display = "block"; //signup出現
+        signup.style.visibility="visible";
+     
+        document.getElementById("fullname").value="";
+        document.getElementById("username2").value="";
+        document.getElementById("password2").value="";
+        document.getElementById("comfirm_password").value="";
+    }
+}
+</script>
+</html>
