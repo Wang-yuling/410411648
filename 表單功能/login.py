@@ -30,5 +30,20 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/other_page1')
+def other_page1():
+    return render_template('p1.html')
+
+
+@app.route('/other_page2')
+def other_page2():
+    return render_template('p2.html')
+
+
+@app.route('/other_page3')
+def other_page3():
+    return render_template('p3.html')
+
+
 if __name__ == '__main__':
     app.run(port=8080)
