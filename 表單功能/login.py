@@ -45,5 +45,15 @@ def other_page3():
     return render_template('p3.html')
 
 
+@app.route('/other_page4')
+def other_page4():
+    return render_template('p4.html')
+
+
+@app.route('/other_welcome')
+def other_welcome():
+    return render_template('welcome.html')
+
+
 if __name__ == '__main__':
     app.run(port=8080)
