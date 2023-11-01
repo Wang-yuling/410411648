@@ -21,14 +21,28 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+@app.route('/logins', methods=['GET', 'POST'])
+def logins():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
         if authenticate(username, password):
-            return render_template('welcome.html', username=username)
+            return render_template('welcomes.html', username=username)
+        else:
+            return "失败"
+
+    return render_template('login.html')
+
+
+@app.route('/logint', methods=['GET', 'POST'])
+def logint():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        if authenticate(username, password):
+            return render_template('welcomet.html', username=username)
         else:
             return "失败"
 
