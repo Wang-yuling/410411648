@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Chat with Assistant</title>
+</head>
+<body>
+
+    <div id="messages"></div>
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+    <script>
+        // 通过 Socket.IO 创建与服务器的连接
+
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        console.log("SocketIO connection status:", socket.connected);
+
+        // 当收到 'assistant_message' 事件时，调用 displayMessage 函数显示助手的消息
+        socket.on('assistant_message', function (message) {
+            displayMessage(message.role, message.content);
+        });
+
+        // 发送消息的函数
+        function sendMessage() {
+            var userInput = document.getElementById('userInput').value;
+            displayMessage('User', userInput);
+            socket.emit('user_message', {'content': userInput});
+        }
+
+        // 显示消息的函数
+        function displayMessage(role, content) {
+            var messageDiv = document.getElementById('messages');
+            var messageText = document.createElement('p');
+            messageText.innerHTML = `<strong>${role}:</strong> ${content}`;
+            messageDiv.appendChild(messageText);
+        }
+    </script>
+</body>
+</html>
